@@ -19,7 +19,7 @@
       <img class="decor__item decor__item--top-right" src="assets/shard-top-right.svg" alt="" width="808" height="238">
       <img class="decor__item decor__item--mid-left" src="assets/shard-mid-left.svg" alt="" width="725" height="605">
       <img class="decor__item decor__item--mid-right" src="assets/shard-mid-right.svg" alt="" width="689" height="632">
-      <img class="decor__item decor__item--star" src="assets/star-big.svg" alt="" width="1653" height="2464">
+      <img class="decor__item decor__item--star" src="assets/star-big.svg" alt="" width="2560" height="2464">
       <img class="decor__item decor__item--low-left" src="assets/shard-low-left.svg" alt="" width="987" height="1173">
       <img class="decor__item decor__item--bottom-right" src="assets/shard-bottom-right.svg" alt="" width="840" height="1662">
       <img class="decor__item decor__item--bottom-left" src="assets/shard-bottom-left.svg" alt="" width="806" height="1321">
@@ -125,5 +125,24 @@
       </section>
     </main>
   </div>
+
+  <script>
+    (function () {
+      var star = document.querySelector('.decor__item--star');
+      if (!star || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var ticking = false;
+      function update() {
+        star.style.setProperty('--star-spin', (window.scrollY * 0.08) + 'deg');
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
